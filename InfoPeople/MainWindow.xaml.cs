@@ -32,7 +32,7 @@ namespace InfoPeople
             List<People> peoples = new List<People>();
             peoples.Add(new People("Гарри","Поттер", "2020-01-17"));
             peoples.Add(new People("Володя", "Поттер", "1997-01-17"));
-            peoples.Add(new People("Рон", "Поттер", "2021-01-17"));
+            peoples.Add(new People("Рон", "Поттер", "18:12:2015"));
             peoples.Add(new People("Джини", "Поттер", "1965-01-17"));
             OpenSaveFiles.SaveFile(peoples);
 
@@ -40,7 +40,7 @@ namespace InfoPeople
             dataGridPeople.Columns[0].Header = "Имя";
             dataGridPeople.Columns[1].Header = "Фамилия";
             dataGridPeople.Columns[2].Header = "Возраст";
-            dataGridPeople.Columns[3].Header = "День рождения";
+            dataGridPeople.Columns[3].Header = "День рождения(дд-мм-гггг)";
 
         }
     }

@@ -22,14 +22,14 @@ namespace InfoPeople.Data
         public int Age { get; private set; }
 
 
-        private DateTime birthday;
+        private DateTime? birthday;
         public string Birthday
         {
-            get { return birthday.ToString(dateFormat); }
+            get { return birthday?.ToString(dateFormat); }
 
             private set
             {
-                birthday = DateTime.Parse(value, null);
+                birthday = DateTime.Parse(value.Replace(':','-'));
                 Age = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
             }
         }
