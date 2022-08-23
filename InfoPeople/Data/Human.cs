@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace InfoPeople.Data
 {
-    class People
+    class Human
     {
         private string dateFormat = "dd-MM-yyyy";
-        public People(string firstName, string lastName, string birthday)
+        public Human(string firstName, string lastName, string birthday)
         {
             FirstName = firstName;
             LastName = lastName;

@@ -29,14 +29,14 @@ namespace InfoPeople
         private void dataGridPeople_Loaded(object sender, RoutedEventArgs e)
         {
 
-            List<People> peoples = new List<People>();
-            peoples.Add(new People("Гарри","Поттер", "2020-01-17"));
-            peoples.Add(new People("Володя", "Поттер", "1997-01-17"));
-            peoples.Add(new People("Рон", "Поттер", "18:12:2015"));
-            peoples.Add(new People("Джини", "Поттер", "1965-01-17"));
+            List<Human> peoples = new List<Human>();
+            peoples.Add(new Human("Гарри","Поттер", "2020-01-17"));
+            peoples.Add(new Human("Володя", "Поттер", "1997-01-17"));
+            peoples.Add(new Human("Рон", "Поттер", "18:12:2015"));
+            peoples.Add(new Human("Джини", "Поттер", "1965-01-17"));
             OpenSaveFiles.SaveFile(peoples);
 
-            dataGridPeople.ItemsSource = OpenSaveFiles.LoadFile<People>();
+            dataGridPeople.ItemsSource = OpenSaveFiles.LoadFile<Human>();
             dataGridPeople.Columns[0].Header = "Имя";
             dataGridPeople.Columns[1].Header = "Фамилия";
             dataGridPeople.Columns[2].Header = "Возраст";
