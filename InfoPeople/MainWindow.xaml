@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfoPeople"
         mc:Ignorable="d"
-        Title="Информация о людях" Height="650" Width="900">
+        Title="Информация о людях" Height="650" Width="900" Closed="Window_Closed">
     <Grid>
         <DataGrid x:Name="dataGridPeople" Loaded="dataGridPeople_Loaded" Margin="0,0,0,70"/>
         <Button Content="Добавить" 

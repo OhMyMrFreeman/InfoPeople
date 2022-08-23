@@ -29,12 +29,8 @@ namespace InfoPeople
         private void dataGridPeople_Loaded(object sender, RoutedEventArgs e)
         {
 
-            List<Human> peoples = new List<Human>();
-            peoples.Add(new Human("Гарри","Поттер", "2020-01-17"));
-            peoples.Add(new Human("Володя", "Поттер", "1997-01-17"));
-            peoples.Add(new Human("Рон", "Поттер", "18:12:2015"));
-            peoples.Add(new Human("Джини", "Поттер", "1965-01-17"));
-            OpenSaveFiles.SaveFile(peoples);
+            List<Human> Humans = new List<Human>();
+            
 
             dataGridPeople.ItemsSource = OpenSaveFiles.LoadFile<Human>();
             dataGridPeople.Columns[0].Header = "Имя";
@@ -42,6 +38,12 @@ namespace InfoPeople
             dataGridPeople.Columns[2].Header = "Возраст";
             dataGridPeople.Columns[3].Header = "День рождения(дд-мм-гггг)";
 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            var humans = dataGridPeople.ItemsSource.Cast<Human>();
+            OpenSaveFiles.SaveFile(humans);
         }
     }
 }

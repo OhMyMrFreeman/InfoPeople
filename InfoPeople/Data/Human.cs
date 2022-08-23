@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfoPeople.Data
 {
@@ -15,7 +11,7 @@ namespace InfoPeople.Data
             LastName = lastName;
             Birthday = birthday;
         }
-        public string FirstName { get; private set; } 
+        public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
 
@@ -29,8 +25,15 @@ namespace InfoPeople.Data
 
             private set
             {
-                birthday = DateTime.Parse(value.Replace(':','-'));
-                Age = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
+                if(value != null && DateTime.TryParse(value.Replace(':', '-'), out var rezult))
+                {
+                    birthday = rezult;
+                    Age = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
+                }
+                else
+                {
+                    Age = -1;
+                }
             }
         }
 
