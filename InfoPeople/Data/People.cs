@@ -8,8 +8,8 @@ namespace InfoPeople.Data
 {
     class People
     {
-        private string dateFormat = "yyyy-MM-dd";
-        public People(string firstName, string lastName, DateTime birthday)
+        private string dateFormat = "dd-MM-yyyy";
+        public People(string firstName, string lastName, string birthday)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -23,16 +23,16 @@ namespace InfoPeople.Data
 
 
         private DateTime birthday;
-        public DateTime Birthday
-        { get { return birthday; }
+        public string Birthday
+        {
+            get { return birthday.ToString(dateFormat); }
 
             private set
             {
-                birthday = value;
+                birthday = DateTime.Parse(value, null);
                 Age = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
             }
         }
-
 
     }
 }

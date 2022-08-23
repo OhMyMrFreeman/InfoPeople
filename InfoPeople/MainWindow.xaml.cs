@@ -30,10 +30,10 @@ namespace InfoPeople
         {
 
             List<People> peoples = new List<People>();
-            peoples.Add(new People("Гарри","Поттер", new DateTime(2020,01,17)));
-            peoples.Add(new People("Володя", "Поттер", new DateTime(2010, 01, 17)));
-            peoples.Add(new People("Рон", "Поттер", new DateTime(2015, 01, 17)));
-            peoples.Add(new People("Джини", "Поттер", new DateTime(1996, 01, 17)));
+            peoples.Add(new People("Гарри","Поттер", "2020-01-17"));
+            peoples.Add(new People("Володя", "Поттер", "1997-01-17"));
+            peoples.Add(new People("Рон", "Поттер", "2021-01-17"));
+            peoples.Add(new People("Джини", "Поттер", "1965-01-17"));
             OpenSaveFiles.SaveFile(peoples);
 
             dataGridPeople.ItemsSource = OpenSaveFiles.LoadFile<People>();
