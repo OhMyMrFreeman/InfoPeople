@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace InfoPeople.Data
 {
     class Human
     {
-        private string dateFormat = "dd-MM-yyyy";
+        readonly string dateFormat = "dd-MM-yyyy";
         public Human(string firstName, string lastName, string birthday)
         {
             FirstName = firstName;
@@ -34,6 +37,14 @@ namespace InfoPeople.Data
                 {
                     Age = -1;
                 }
+            }
+        }
+
+        public static void AddHumanToList(List<Human> humans, DataGrid dataGrid)
+        {
+            foreach (var item in dataGrid.Items.Cast<Human>())
+            {
+                humans.Add(item);
             }
         }
 

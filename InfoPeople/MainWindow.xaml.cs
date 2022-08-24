@@ -25,25 +25,37 @@ namespace InfoPeople
         {
             InitializeComponent();
         }
-
-        private void dataGridPeople_Loaded(object sender, RoutedEventArgs e)
+        //Добавление данных в таблицу
+        private void FillDatarid(List<Human> humans, DataGrid dataGrid)
         {
-
-            List<Human> Humans = new List<Human>();
-            
-
-            dataGridPeople.ItemsSource = OpenSaveFiles.LoadFile<Human>();
-            dataGridPeople.Columns[0].Header = "Имя";
-            dataGridPeople.Columns[1].Header = "Фамилия";
-            dataGridPeople.Columns[2].Header = "Возраст";
-            dataGridPeople.Columns[3].Header = "День рождения(дд-мм-гггг)";
-
+            foreach (var item in humans)
+            {
+                dataGrid.Items.Add(item);
+            }
         }
+        private void DataGridPeople_Loaded(object sender, RoutedEventArgs e)
+        {
+            FillDatarid(LoadSaveFiles.LoadFile<Human>(), dataGridPeople);
+        }
+
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            var humans = dataGridPeople.ItemsSource.Cast<Human>();
-            OpenSaveFiles.SaveFile(humans);
+            var humans = new List<Human>();
+            Human.AddHumanToList(humans, dataGridPeople);
+            LoadSaveFiles.SaveFile(humans);
+        }
+
+        private void ButtonAddHuman_Click(object sender, RoutedEventArgs e)
+        {
+            var humans = new List<Human>();
+            Human.AddHumanToList(humans, dataGridPeople);
+
+            humans.Add(new Human(textBoxFirstName.Text, textBoxLastName.Text, datePickerBirthday.Text)); //Добавление нового человека
+
+            dataGridPeople.Items.Clear();
+            FillDatarid(humans, dataGridPeople);
+
         }
     }
 }

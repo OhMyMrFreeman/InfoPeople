@@ -7,12 +7,28 @@
         mc:Ignorable="d"
         Title="Информация о людях" Height="650" Width="900" Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="dataGridPeople" Loaded="dataGridPeople_Loaded" Margin="0,0,0,70"/>
-        <Button Content="Добавить" 
+        <DataGrid x:Name="dataGridPeople" Loaded="DataGridPeople_Loaded" Margin="0,0,0,70" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Binding="{Binding FirstName}" Header="Имя"/>
+                <DataGridTextColumn Width="100" Binding="{Binding LastName}" Header="Фамилия"/>
+                <DataGridTextColumn Width="100" Binding="{Binding Age}" Header="Возраст"/>
+                <DataGridTextColumn Width="200" Binding="{Binding Birthday}" Header="День рождения(дд-мм-гггг)"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="buttonAddHuman"
+                Content="Добавить" 
                 Margin="10,0,0,10" 
                 Height="55" 
                 VerticalAlignment="Bottom"
-                HorizontalAlignment="Left" Width="120" FontSize="14" FontStretch="Normal"
+                HorizontalAlignment="Left" Width="120" FontSize="14" FontStretch="Normal" Click="ButtonAddHuman_Click"
                 />
+        <TextBox x:Name="textBoxFirstName" HorizontalAlignment="Left" Margin="163,0,0,17" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Height="20"/>
+        <TextBox x:Name="textBoxLastName" HorizontalAlignment="Left" Margin="311,0,0,17" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Height="20"/>
+        <DatePicker x:Name="datePickerBirthday" HorizontalAlignment="Left" Margin="545,0,0,15" VerticalAlignment="Bottom"/>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="206,0,0,37" VerticalAlignment="Bottom" FontStyle="Normal"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="341,0,0,37" VerticalAlignment="Bottom"/>
+        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="545,0,0,37" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
