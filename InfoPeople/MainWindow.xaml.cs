@@ -1,6 +1,7 @@
 ﻿using InfoPeople.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,35 +27,24 @@ namespace InfoPeople
             InitializeComponent();
         }
         //Добавление данных в таблицу
-        private void FillDatarid(List<Human> humans, DataGrid dataGrid)
-        {
-            foreach (var item in humans)
-            {
-                dataGrid.Items.Add(item);
-            }
-        }
+        
         private void DataGridPeople_Loaded(object sender, RoutedEventArgs e)
         {
-            FillDatarid(LoadSaveFiles.LoadFile<Human>(), dataGridPeople);
+            ObservableCollection<Human> human = new ObservableCollection<Human>(LoadSaveFiles.LoadFile<Human>());
+            dataGridPeople.ItemsSource = human;
         }
 
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            var humans = new List<Human>();
-            Human.AddHumanToList(humans, dataGridPeople);
-            LoadSaveFiles.SaveFile(humans);
+            LoadSaveFiles.SaveFile(dataGridPeople.ItemsSource.Cast<Human>());
         }
 
         private void ButtonAddHuman_Click(object sender, RoutedEventArgs e)
         {
-            var humans = new List<Human>();
-            Human.AddHumanToList(humans, dataGridPeople);
-
-            humans.Add(new Human(textBoxFirstName.Text, textBoxLastName.Text, datePickerBirthday.Text)); //Добавление нового человека
-
-            dataGridPeople.Items.Clear();
-            FillDatarid(humans, dataGridPeople);
+            ObservableCollection<Human> human = new ObservableCollection<Human>(dataGridPeople.ItemsSource.Cast<Human>());
+            human.Add(new Human(textBoxFirstName.Text, textBoxLastName.Text,textBoxMiddleName.Text, datePickerBirthday.Text));
+            dataGridPeople.ItemsSource = human;
 
         }
     }
