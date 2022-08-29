@@ -22,12 +22,13 @@ namespace InfoPeople
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
         //Добавление данных в таблицу
-        
         private void DataGridPeople_Loaded(object sender, RoutedEventArgs e)
         {
             ObservableCollection<Human> human = new ObservableCollection<Human>(LoadSaveFiles.LoadFile<Human>());
@@ -45,6 +46,11 @@ namespace InfoPeople
             ObservableCollection<Human> human = new ObservableCollection<Human>(dataGridPeople.ItemsSource.Cast<Human>());
             human.Add(new Human(textBoxFirstName.Text, textBoxLastName.Text,textBoxMiddleName.Text, datePickerBirthday.Text));
             dataGridPeople.ItemsSource = human;
+
+        }
+
+        private void DataGridPeople_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
 
         }
     }

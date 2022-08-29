@@ -7,17 +7,18 @@
         mc:Ignorable="d"
         Title="Информация о людях" Height="650" Width="900" Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="dataGridPeople" Loaded="DataGridPeople_Loaded" Margin="0,0,0,70" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataGridPeople" Loaded="DataGridPeople_Loaded" Margin="0,0,0,70" AutoGenerateColumns="False" CellEditEnding="DataGridPeople_CellEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Binding="{Binding LastName}" Header="Фамилия"/>
-                <DataGridTextColumn Width="100" Binding="{Binding FirstName}" Header="Имя"/>
-                <DataGridTextColumn Width="100" Binding="{Binding MiddleName}" Header="Отчество"/>
-                <DataGridTextColumn Width="100" Binding="{Binding Age}" Header="Возраст" IsReadOnly="True" />
-                <DataGridTextColumn Width="200" Binding="{Binding Birthday}" Header="День рождения(дд-мм-гггг)"/>
+                <DataGridTextColumn Width="100" Binding="{Binding Path=LastName}" Header="Фамилия"/>
+                <DataGridTextColumn Width="100" Binding="{Binding Path=FirstName}" Header="Имя"/>
+                <DataGridTextColumn Width="100" Binding="{Binding Path=MiddleName}" Header="Отчество"/>
+                <DataGridTextColumn Width="100" Binding="{Binding Path=Age, UpdateSourceTrigger=LostFocus}" Header="Возраст" IsReadOnly="True" />
+                <DataGridTextColumn Width="200" Binding="{Binding Path=Birthday}" Header="День рождения(дд-мм-гггг)"/>
 
             </DataGrid.Columns>
 
         </DataGrid>
+        
         <Button x:Name="buttonAddHuman"
                 Content="Добавить" 
                 Margin="10,0,0,10" 
