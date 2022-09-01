@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace InfoPeople.Data
 {
@@ -19,36 +18,46 @@ namespace InfoPeople.Data
 
         public string MiddleName { get; set; }
 
-        public int Age { get; set; }
+        public int Age
+        {
+            get
+            {
+                if (birthday != null)
+                {
+
+                    var rez = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
+
+                    if (DateTime.Today.Month < birthday.Value.Month)
+                    {
+                        return --rez;
+                    }
+                    else if (DateTime.Today.Month == birthday.Value.Month)
+                    {
+                        if (DateTime.Today.Day < birthday.Value.Day)
+                        {
+                            return --rez;
+                        }
+                    }
+
+                    return rez;
+                }
+                return -1;
+            }
+
+        }
 
 
         private DateTime? birthday;
 
         public string Birthday
         {
-            get { return $"{birthday?.ToString(dateFormat)}"; }
+            get { return birthday?.ToString(dateFormat); }
 
             set
             {
-                if(value != null && DateTime.TryParse(value.Replace(':', '-'), out var rezult))
+                if (value != null && DateTime.TryParse(value.Replace(':', '-'), out var rezult))
                 {
                     birthday = rezult;
-                    Age = DateTime.Now.Year - Convert.ToDateTime(birthday).Year;
-                    if(DateTime.Today.Month < birthday.Value.Month)
-                    {
-                        Age--;
-                    }
-                    else if(DateTime.Today.Month == birthday.Value.Month)
-                    {
-                        if(DateTime.Today.Day < birthday.Value.Day)
-                        {
-                            Age--;
-                        }
-                    }
-                }
-                else
-                {
-                    Age = -1;
                 }
             }
         }
