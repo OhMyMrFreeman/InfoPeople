@@ -46,7 +46,7 @@ namespace InfoPeople.Data
 
         }
 
-
+        //Время
         private DateTime? birthday;
 
         public string Birthday
